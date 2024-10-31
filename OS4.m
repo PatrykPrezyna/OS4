@@ -1,6 +1,7 @@
 run('Data.m')
 run("Constants.m")
 
+
 %Functions
 % Calculate availability
 
@@ -9,7 +10,7 @@ run("Constants.m")
 % fullfiled the constraints
 
 
-%design generation
+%road vehicle design generation
 iteration=1;
 for b=1:length(Battery)
     for c=1:length(Chassis)
@@ -36,7 +37,12 @@ for b=1:length(Battery)
                     %SAU Average waiting time
                     %Additional attributes
                     Design(iteration).autonomy_level = Autonomous_system(a).level;
+                    %Validity check
                     Design(iteration).valid = 1;% simpe idea how to select dasigns ?
+                    if Battery(b).weight > Chassis(c).weight/3
+                        Design(iteration).valid = 0;
+                    end
+                    
                     iteration=iteration+1;
                 end
             end
@@ -45,5 +51,4 @@ for b=1:length(Battery)
 end
 
 %Calculate SAU 
-
-
+SAU_availability = 1;
