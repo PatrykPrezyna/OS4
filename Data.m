@@ -50,3 +50,20 @@ Autonomous_system(3).level = 3;
 Autonomous_system(3).weight = 120;
 Autonomous_system(3).power_consumption = 5;
 Autonomous_system(3).cost = 60000;
+
+
+Motor(1).weight = 35;
+Motor(1).power = 50;
+Motor(1).cost = 4200;
+
+Motor(2).weight = 80;
+Motor(2).power = 100;
+Motor(2).cost = 9800;
+
+Motor(3).weight = 110;
+Motor(3).power = 210;
+Motor(3).cost = 13650;
+
+Motor(4).weight = 200;
+Motor(4).power = 350;
+Motor(4).cost = 2060;
