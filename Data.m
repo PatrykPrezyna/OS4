@@ -34,3 +34,19 @@ Battery_charger(1).weight = 1;
 Battery_charger(2).power = 60;
 Battery_charger(2).cost = 7000;
 Battery_charger(2).weight = 5;
+
+
+Autonomous_system(1).level = 1;
+Autonomous_system(1).weight = 30;
+Autonomous_system(1).power_consumption = 1.5;
+Autonomous_system(1).cost = 15000;
+
+Autonomous_system(2).level = 2;
+Autonomous_system(2).weight = 60;
+Autonomous_system(2).power_consumption = 2.5;
+Autonomous_system(2).cost = 35000;
+
+Autonomous_system(3).level = 3;
+Autonomous_system(3).weight = 120;
+Autonomous_system(3).power_consumption = 5;
+Autonomous_system(3).cost = 60000;
