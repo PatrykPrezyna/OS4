@@ -7,7 +7,7 @@ Battery(2).cost = 19000;
 Battery(2).weight = 450;
 
 Battery(3).capacity = 600000;
-Battery(3).cost = 57;
+Battery(3).cost = 57000;
 Battery(3).weight = 1400;
 
 

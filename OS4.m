@@ -17,7 +17,7 @@ for b=1:length(Battery)
                     %SAU Availability
                     Design(iteration).Battery_nr= b;
                     Design(iteration).Battery_charge_time = Battery(b).capacity/Battery_charger(bc).power; 
-                    Design(iteration).Total_weight = Battery(b).weight+Chassis(c).weight+Battery_charger(bc).weight+Autonomous_system(a).weight+Chassis(c).pax*PASSENGERS_WEIGHT*Motor(m).weight;
+                    Design(iteration).Total_weight = Battery(b).weight+Chassis(c).weight+Battery_charger(bc).weight+Autonomous_system(a).weight+(Chassis(c).pax*PASSENGERS_WEIGHT*0.75)+Motor(m).weight;
                     Design(iteration).Power_consumption = Chassis(c).power_consumption + 0.1*(Design(iteration).Total_weight-Chassis(c).weight) + Autonomous_system(a).power_consumption;
                     Design(iteration).Range = Battery(b).capacity/Design(iteration).Power_consumption;
                     Design(iteration).Average_speed = 700 * Motor(m).power/Design(iteration).Total_weight;
@@ -25,7 +25,7 @@ for b=1:length(Battery)
                         Design(iteration).Average_speed = SPEED_LIMIT;
                     end
                     Design(iteration).Up_time=Design(iteration).Range/Design(iteration).Average_speed;
-                    Design(iteration).Down_time=Design(iteration).Battery_charge_time+25;
+                    Design(iteration).Down_time=Design(iteration).Battery_charge_time+0.25;
                     Design(iteration).Availability=Design(iteration).Up_time/(Design(iteration).Up_time+Design(iteration).Down_time);
                     Design(iteration).Availability;
                     Design(iteration).SAU_availability = SAU_Availability(Design(iteration).Availability);
