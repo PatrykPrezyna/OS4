@@ -12,10 +12,15 @@ for b=1:length(Battery)
         for bc=1:length(Battery_charger)
             for a=1:length(Autonomous_system)
                 for m=1:length(Motor)
+                    %Main indentification for each design variable
+                    Design(iteration).Battery_capacity = Battery(b).capacity;
+                    Design(iteration).Chassis_pax = Chassis(c).pax;
+                    Design(iteration).Battery_charger_power = Battery_charger(bc).power;
+                    Design(iteration).Autonomous_system_level = Autonomous_system(a).level;
+                    Design(iteration).Motor_power = Motor(m).power;
                     %Cost
                     Design(iteration).cost = Battery(b).cost+Chassis(c).cost+Battery_charger(bc).cost+Autonomous_system(a).cost+Motor(m).cost;
                     %SAU Availability
-                    Design(iteration).Battery_nr= b;
                     Design(iteration).Battery_charge_time = Battery(b).capacity/Battery_charger(bc).power; 
                     Design(iteration).Total_weight = Battery(b).weight+Chassis(c).weight+Battery_charger(bc).weight+Autonomous_system(a).weight+(Chassis(c).pax*PASSENGERS_WEIGHT*0.75)+Motor(m).weight;
                     Design(iteration).Power_consumption = Chassis(c).power_consumption + 0.1*(Design(iteration).Total_weight-Chassis(c).weight) + Autonomous_system(a).power_consumption;
