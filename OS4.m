@@ -1,13 +1,13 @@
 clear
-%run('Data.m')
-run('Data_min_max.m')
+run('Data.m')
+%run('Data_min_max.m')
 run("Constants.m")
 
 
 
 %design generation
 iteration=1;
-Number_of_vehicles = [1 2 3];
+Number_of_vehicles = [1 2 3 5];
 for d=1:length(Number_of_vehicles)
     for b=1:length(Battery)
         for c=1:length(Chassis)
@@ -43,9 +43,11 @@ for d=1:length(Number_of_vehicles)
                         Design(iteration).Peak_Passenger_Throughput  = (Chassis(c).pax*Number_of_vehicles(d)*Design(iteration).Availability)/Design(iteration).loop_time; 
                         Design(iteration).SAU_Peak_Passenger_Throughput= SAU_Peak(Design(iteration).Peak_Passenger_Throughput);
                         %SAU Passenger trips/day
-                        Design(iteration).SAU_passenger_trip_day = 1;
+                        Design(iteration).Passenger_Volume = Design(iteration).Peak_Passenger_Throughput*OPERATING_HOURS;
+                        Design(iteration).SAU_Passenger_Volume = SAU_Volume(Design(iteration).Passenger_Volume);
                         %SAU Average waiting time
-                        Design(iteration).SAU_average_waiting_time = 1;
+                        Design(iteration).Wait_Time=Design(iteration).Peak_Passenger_Throughput/2;
+                        Design(iteration).SAU_Wait_Time = SAU_Wait(Design(iteration).Wait_Time);
                         %Additional attributes
                         Design(iteration).autonomy_level = Autonomous_system(a).level;
                         %Validity check
@@ -54,7 +56,7 @@ for d=1:length(Number_of_vehicles)
                             Design(iteration).valid = 0;
                         end
                         %MAU
-                        Design(iteration).MAU = MAU_value(Design(iteration).SAU_availability,Design(iteration).SAU_Peak_Passenger_Throughput,Design(iteration).SAU_passenger_trip_day,Design(iteration).SAU_average_waiting_time);
+                        Design(iteration).MAU = MAU_value(Design(iteration).SAU_availability,Design(iteration).SAU_Peak_Passenger_Throughput,Design(iteration).SAU_Passenger_Volume,Design(iteration).SAU_Wait_Time);
                         iteration=iteration+1;
                     end
                 end
