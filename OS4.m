@@ -1,11 +1,13 @@
-run('Data.m')
+clear
+%run('Data.m')
+run('Data_min_max.m')
 run("Constants.m")
 
 
 
 %design generation
 iteration=1;
-Number_of_vehicles = [15,20,25];
+Number_of_vehicles = [1 2 3];
 for d=1:length(Number_of_vehicles)
     for b=1:length(Battery)
         for c=1:length(Chassis)
