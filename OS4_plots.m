@@ -8,16 +8,16 @@ pareto_cost = [1000000000];
 
 for i=1:length(Design)
     x(i) = Design(i).cost;
-    % y(i) = Design(i).SAU_availability;
-    % topic = "SAU_availability: ";
+    y(i) = Design(i).SAU_availability;
+    topic = "SAU_availability: ";
     % y(i) = Design(i).Peak_Passenger_Throughput;
     % topic = "Peak_Passenger_Throughput: ";
     % y(i) = Design(i).SAU_Passenger_Volume;
     % topic = "SAU_Passenger_Volume: ";   
     %y(i) = Design(i).SAU_Wait_Time;
     %topic = "SAU_Wait_Time: ";
-    y(i) = Design(i).MAU;
-    topic = "MAU: ";
+    %y(i) = Design(i).MAU;
+    %topic = "MAU: ";
 
 
 
@@ -65,14 +65,9 @@ for i=1:length(Design)
     Design_variable_names = cat(1, Design_variable_names, ["Number_of_vehicles"]);
 end
  size=zeros(length(color),1)+20;
- shape=[];
-    for k =1:length(length(color))
-        shape = cat(1,shape, 'o');
-    end
  %shape=zeros(length(color),1)+20;
  for i=pareto_nr
      size(pareto_nr)=160;
-     shape(pareto_nr)='o';
  end
 
 %SAU Fleet Figure
@@ -81,7 +76,7 @@ for i=1:6
     %idea for more plots on one figures
     % t = tiledlayout(2,2);
     % nexttile
-    scatter(x,y, size, color(i,:), shape);
+    scatter(x,y, size, color(i,:));
 
     c = colorbar; 
     
@@ -117,14 +112,17 @@ end
 % scatter(x,y, 20, color);
 
 j=0;
-unique_pareto = unique(pareto_nr);
+unique_pareto = unique(pareto_nr)
 Pareto_Designs=[];
+Pareto_Designs_EB =[];
 for i=1:length(unique_pareto)
     Pareto_Designs = cat(1, Pareto_Designs, [unique_pareto(i) Design(unique_pareto(i)).Number_of_vehicles Design(unique_pareto(i)).Battery_capacity Design(unique_pareto(i)).Chassis_pax Design(unique_pareto(i)).Battery_charger_power Design(unique_pareto(i)).Autonomous_system_level]);
+    Pareto_Designs_EB = cat(1, Pareto_Designs_EB, [unique_pareto(i) Design(unique_pareto(i)).Number_of_bikes Design(unique_pareto(i)).Battery_capacity_EB Design(unique_pareto(i)).Frame_weight_EB Design(unique_pareto(i)).Battery_charger_power_EB]);
 end
 display("Design | Number_of_vehicles | Battery_capacity | Chassis_pax | Battery_charger_power | Auto level")
-Pareto_Designs
-
+Pareto_Designs;
+display("Design | Number_of_BIKES | Battery_capacity | Frame_weight | Battery_charger_power")
+Pareto_Designs_EB;
 
 %DEREKS CODE
 % EB_MAU=[Designs_EB.MAU];

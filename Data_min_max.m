@@ -67,3 +67,55 @@ Motor(2).cost = 13650;
 Motor(3).weight = 200;
 Motor(3).power = 350000;
 Motor(3).cost = 2060;
+
+
+%Battery - EB
+Battery_EB(1).capacity=500;
+Battery_EB(1).cost=600;
+Battery_EB(1).weight=5;
+
+Battery_EB(2).capacity=1500;
+Battery_EB(2).cost=1500;
+Battery_EB(2).weight=11;
+
+Battery_EB(3).capacity=3000;
+Battery_EB(3).cost=2600;
+Battery_EB(3).weight=17;
+
+%Frame - EB
+Frame_EB(1).pax=1;
+Frame_EB(1).weight=20;
+Frame_EB(1).cost=2000;
+Frame_EB(1).power_consumption = 30;
+
+Frame_EB(2).pax=1;
+Frame_EB(2).weight=17;
+Frame_EB(2).cost=3000;
+Frame_EB(2).power_consumption = 25;
+
+Frame_EB(3).pax=2;
+Frame_EB(3).weight=35;
+Frame_EB(3).cost=3500;
+Frame_EB(3).power_consumption = 40;
+
+%Charger - EB
+Battery_charger_EB(1).power = 200;
+Battery_charger_EB(1).cost = 300;
+Battery_charger_EB(1).weight = 0.5;
+
+Battery_charger_EB(2).power = 600;
+Battery_charger_EB(2).cost = 500;
+Battery_charger_EB(2).weight = 1.2;
+
+%Motor & Inverter - EB
+Motor_EB(1).weight = 5;
+Motor_EB(1).power = 350;
+Motor_EB(1).cost = 300;
+
+Motor_EB(2).weight = 4;
+Motor_EB(2).power = 500;
+Motor_EB(2).cost = 400;
+
+Motor_EB(3).weight = 7;
+Motor_EB(3).power = 1500;
+Motor_EB(3).cost = 600;
