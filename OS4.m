@@ -22,7 +22,7 @@ for d=1:length(Number_of_vehicles)
                         Design(iteration).Autonomous_system_level = Autonomous_system(a).level;
                         Design(iteration).Motor_power = Motor(m).power;
                         %Cost
-                        Design(iteration).cost = Battery(b).cost+Chassis(c).cost+Battery_charger(bc).cost+Autonomous_system(a).cost+Motor(m).cost;
+                        Design(iteration).cost = (Battery(b).cost+Chassis(c).cost+Battery_charger(bc).cost+Autonomous_system(a).cost+Motor(m).cost)*Number_of_vehicles(d);
                         %SAU Availability
                         Design(iteration).Battery_charge_time = Battery(b).capacity/Battery_charger(bc).power; 
                         Design(iteration).Total_weight = Battery(b).weight+Chassis(c).weight+Battery_charger(bc).weight+Autonomous_system(a).weight+(Chassis(c).pax*PASSENGERS_WEIGHT*0.75)+Motor(m).weight;
