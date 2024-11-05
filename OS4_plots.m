@@ -14,10 +14,10 @@ for i=1:length(Design)
     %topic = "Peak_Passenger_Throughput: ";
     % y(i) = Design(i).SAU_Passenger_Volume;
     % topic = "SAU_Passenger_Volume: ";   
-    y(i) = Design(i).SAU_Wait_Time;
-    topic = "SAU_Wait_Time: ";
-    %y(i) = Design(i).MAU;
-    %topic = "MAU: ";
+    %y(i) = Design(i).SAU_Wait_Time;
+    %topic = "SAU_Wait_Time: ";
+    y(i) = Design(i).MAU;
+    topic = "MAU: ";
 
 
 
@@ -64,16 +64,34 @@ for i=1:length(Design)
     color(6,i)=Design(i).Number_of_vehicles;
     Design_variable_names = cat(1, Design_variable_names, ["Number_of_vehicles"]);
 end
- size=zeros(length(color),1)+20;
+ size=zeros(length(color),1)+25;
  shape=[];
     for k =1:length(length(color))
         shape = cat(1,shape, 'o');
     end
  %shape=zeros(length(color),1)+20;
+  xp = [];
+  yp = [];
  for i=pareto_nr
-     size(pareto_nr)=160;
+     size(pareto_nr)=100;
+     %size(pareto_nr)=20;
      shape(pareto_nr)='o';
+     % xp = cat(1,xp, x(i));
+     % yp = cat(1,yp, y(i));
  end
+
+ scenario1 = [1 3 4 6 9 12 15 21 24 27 33 36 42 45 53 54 99 107 196 205 214 268]
+ for i=scenario1
+     %size(pareto_nr)=20;
+     shape(pareto_nr)='o';
+     xp = cat(1,xp, x(i));
+     yp = cat(1,yp, y(i));
+ end
+ %for 
+ % size(318)=400;
+ % size(291)=400;
+
+
 
 %SAU Fleet Figure
 for i=1:6
@@ -81,7 +99,7 @@ for i=1:6
     %idea for more plots on one figures
     % t = tiledlayout(2,2);
     % nexttile
-    scatter(x,y, size, color(i,:), shape);
+    scatter(x,y, size, color(i,:), shape, 'filled');
 
     c = colorbar; 
     
@@ -98,6 +116,7 @@ for i=1:6
     colormap(jet);
     xlabel('Cost [$]');
     ylim([0 1]);
+    ylim([min(y) 1]);
     ylabel('Utility');
     xlim([0 max(x)]);
     %xlim([0 500000]);%
@@ -108,6 +127,7 @@ for i=1:6
     Utopia = 1;
     plot(Utopia,'py','LineWidth',10)
     annotation('textarrow',[0.1657 0.1357],[0.8738 0.9238],'String','Utopia')
+    scatter(xp, yp, "diamond",'LineWidth', 2)
     hold off
 end
 
@@ -163,3 +183,5 @@ Pareto_Designs2
 % ylabel('Utility');
 % % ylabel(colorbar,scale_title);
 % % title('Kendall Square',vehicle_category,'Tradespace [',scale_title,']');
+% color(i,:)
+% shape(i,:)
