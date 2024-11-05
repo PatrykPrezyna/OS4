@@ -1,13 +1,13 @@
 clear
-run('Data.m')
-%run('Data_min_max.m')
+%run('Data.m')
+run('Data_min_max.m')
 run("Constants.m")
 
 
 
 %design generation
 iteration=1;
-Number_of_vehicles = [1 2 3 5];
+Number_of_vehicles = [3 7 10];
 for d=1:length(Number_of_vehicles)
     for b=1:length(Battery)
         for c=1:length(Chassis)
@@ -28,7 +28,7 @@ for d=1:length(Number_of_vehicles)
                         Design(iteration).Total_weight = Battery(b).weight+Chassis(c).weight+Battery_charger(bc).weight+Autonomous_system(a).weight+(Chassis(c).pax*PASSENGERS_WEIGHT*0.75)+Motor(m).weight;
                         Design(iteration).Power_consumption = Chassis(c).power_consumption + 0.1*(Design(iteration).Total_weight-Chassis(c).weight) + Autonomous_system(a).power_consumption;
                         Design(iteration).Range = Battery(b).capacity/Design(iteration).Power_consumption;
-                        Design(iteration).Average_speed = 700 * Motor(m).power/Design(iteration).Total_weight;
+                        Design(iteration).Average_speed = 700 * Motor(m).power/1000/Design(iteration).Total_weight;
                         if Design(iteration).Average_speed > SPEED_LIMIT
                             Design(iteration).Average_speed = SPEED_LIMIT;
                         end

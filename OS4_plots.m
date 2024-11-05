@@ -8,16 +8,16 @@ pareto_cost = [1000000000];
 
 for i=1:length(Design)
     x(i) = Design(i).cost;
-    % y(i) = Design(i).SAU_availability;
-    % topic = "SAU_availability: ";
-    % y(i) = Design(i).Peak_Passenger_Throughput;
-    % topic = "Peak_Passenger_Throughput: ";
+    %y(i) = Design(i).SAU_availability;
+    %topic = "SAU_availability: ";
+    %y(i) = Design(i).SAU_Peak_Passenger_Throughput;
+    %topic = "Peak_Passenger_Throughput: ";
     % y(i) = Design(i).SAU_Passenger_Volume;
     % topic = "SAU_Passenger_Volume: ";   
-    %y(i) = Design(i).SAU_Wait_Time;
-    %topic = "SAU_Wait_Time: ";
-    y(i) = Design(i).MAU;
-    topic = "MAU: ";
+    y(i) = Design(i).SAU_Wait_Time;
+    topic = "SAU_Wait_Time: ";
+    %y(i) = Design(i).MAU;
+    %topic = "MAU: ";
 
 
 
@@ -96,11 +96,11 @@ for i=1:6
     %c.TickLabels = {'50000\[kW]','190000\[kW]','600000\[kW]'};
     
     colormap(jet);
-    xlabel('Vehicle Cost [$]');
+    xlabel('Cost [$]');
     ylim([0 1]);
     ylabel('Utility');
     xlim([0 max(x)]);
-    xlim([0 500000]);%
+    %xlim([0 500000]);%
     ylabel(colorbar,Design_variable_names(i));
     %topic = 'One vehicle Availability: ';
     title(append(topic, Design_variable_names(i)));
@@ -119,11 +119,14 @@ end
 j=0;
 unique_pareto = unique(pareto_nr);
 Pareto_Designs=[];
+Pareto_Designs2=[];
 for i=1:length(unique_pareto)
     Pareto_Designs = cat(1, Pareto_Designs, [unique_pareto(i) Design(unique_pareto(i)).Number_of_vehicles Design(unique_pareto(i)).Battery_capacity Design(unique_pareto(i)).Chassis_pax Design(unique_pareto(i)).Battery_charger_power Design(unique_pareto(i)).Autonomous_system_level]);
+    Pareto_Designs2 = cat(1, Pareto_Designs2, [unique_pareto(i) Design(unique_pareto(i)).SAU_availability Design(unique_pareto(i)).SAU_Peak_Passenger_Throughput Design(unique_pareto(i)).SAU_Passenger_Volume Design(unique_pareto(i)).SAU_Wait_Time Design(unique_pareto(i)).MAU ]);
 end
 display("Design | Number_of_vehicles | Battery_capacity | Chassis_pax | Battery_charger_power | Auto level")
 Pareto_Designs
+Pareto_Designs2
 
 
 %DEREKS CODE
