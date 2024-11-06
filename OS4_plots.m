@@ -17,7 +17,7 @@ for i=1:length(Design)
     %y(i) = Design(i).SAU_Wait_Time;
     %topic = "SAU_Wait_Time: ";
     y(i) = Design(i).MAU;
-    topic = "MAU: ";
+    topic = "Scenario 2 MAU: ";
 
 
 
